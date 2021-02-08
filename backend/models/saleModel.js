@@ -10,6 +10,10 @@ const saleSchema = new mongoose.Schema({
         required: [true, 'Error: Sale Description is Required'],
         trim: true,
     },
+    tags: {
+        type: [String],
+        required: [true, 'Error: Sale tags are Required'],
+    },
     price: {
         type: Number,
         required: [true, 'Error: Sale price is Required'],
@@ -19,15 +23,17 @@ const saleSchema = new mongoose.Schema({
         required: [true, 'Error: Sale requires qty'],
     },
     mainImage: {
-        type: String,
+        type: { url: String, key: String },
+        required: [true, 'Error: Main Image required'],
     },
     images: {
         type: [String],
     },
-    // createdAt: {
-    //     // mongoose auto converts into legit date lol
-    //     type: Date.now(),
-    // },
+    createdAt: {
+        type: Date,
+        // mongoose auto converts into legit date lol
+        default: Date.now(),
+    },
 });
 
 const Sale = mongoose.model('Sale', saleSchema);

@@ -1,0 +1,19 @@
+[
+    {
+        "title": "Anime Laptop",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 599.99,
+        "qty": 5,
+        "tags": ["japanese", "gaming", "tech"],
+        "imageUrl": "./images/japan-laptop.jpg"
+    },
+    {
+        "title": "Japanese Yakuza Jacket",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 29.99,
+        "qty": 8,
+        "tags": ["japanese", "fashion", "jacket", "yakuza"],
+        "imageUrl": "./images/japan-jacket.jpg"
+    }
+
+]

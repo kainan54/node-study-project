@@ -2,11 +2,11 @@ const Sale = require('../models/saleModel');
 const { remove } = require('../services/imageUpload');
 
 // fn ( request, response )
-exports.createSale = async ({ body, file }, resp) => {
+exports.createSale = async ({ body, file: { location, key } }, resp) => {
     // error handling
     try {
         // creates sale using req.body and waits for promise to resolve b4 storing in var
-        const newSale = await Sale.create({ mainImage: file.location, ...body });
+        const newSale = await Sale.create({ mainImage: { url: location, key: key }, ...body });
         // return JSON
         resp.status(200).json({
             status: 'success',
@@ -16,7 +16,7 @@ exports.createSale = async ({ body, file }, resp) => {
         });
     } catch (error) {
         // 400-> bad req + some json also remove un-used images from s3 bucket
-        remove(`${process.env.BUCKET_NAME}`, file.key);
+        remove(`${process.env.BUCKET_NAME}`, key);
         resp.status(400).json({
             status: 'fail',
             message: error.message,
