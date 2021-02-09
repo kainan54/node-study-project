@@ -27,17 +27,18 @@ const sales = JSON.parse(fs.readFileSync(`${__dirname}/data.json`, 'utf-8'));
 
 // creates 1 sale instance
 const loadSale = async (data, sale) => {
+    const awsKey = data.key.match(/\d+$/).pop();
     try {
-        const awsKey = data.key.match(/\d+$/).pop();
         await Sale.create({
+            ...sale,
             mainImage: {
                 url: `https://${process.env.BUCKET_NAME}.s3.amazonaws.com/${awsKey}`,
                 key: awsKey,
             },
-            ...sale,
+            tags: Sale.convertTagsArrayIntoMap(sale.tags),
         });
     } catch (error) {
-        remove(process.env.BUCKET_NAME, key);
+        console.log(error);
     }
 };
 // wipes sales and then creates sales from array/json...uses directUpload fn to store images on s3 bucket

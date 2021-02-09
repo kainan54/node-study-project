@@ -1,6 +1,6 @@
 [
     {
-        "title": "Anime Laptop",
+        "title": "anime laptop",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
         "price": 599.99,
         "qty": 5,
@@ -8,12 +8,83 @@
         "imageUrl": "./images/japan-laptop.jpg"
     },
     {
-        "title": "Japanese Yakuza Jacket",
+        "title": "japanese yakuza jacket",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
         "price": 29.99,
         "qty": 8,
         "tags": ["japanese", "fashion", "jacket", "yakuza"],
         "imageUrl": "./images/japan-jacket.jpg"
+    },
+    {
+        "title": "all might toy",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 40.37,
+        "qty": 2,
+        "tags": ["japanese", "toy", "anime", "my hero"],
+        "imageUrl": "./images/all-might-toy.jpg"
+    },
+    {
+        "title": "fake husky toy",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 80.99,
+        "qty": 40,
+        "tags": ["husky", "toy", "dog"],
+        "imageUrl": "./images/husky-puppy.jpg"
+    },
+    {
+        "title": "ultra wide monitor",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 349.99,
+        "qty": 22,
+        "tags": ["tech", "monitor", "gaming", "ultra wide"],
+        "imageUrl": "./images/ultra-wide-monitor.jpg"
+    },
+    {
+        "title": "lava lamp",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 10.99,
+        "qty": 99,
+        "tags": ["lamp", "home", "lava lamp"],
+        "imageUrl": "./images/lava-lamp.jpg"
+    },
+    {
+        "title": "ancient egyptian gold jordans",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 5000.99,
+        "qty": 3,
+        "tags": ["shoes", "jordans", "gold", "historic"],
+        "imageUrl": "./images/gold-jordans.jpg"
+    },
+    {
+        "title": "2301 prada glasses",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 900.50,
+        "qty": 90,
+        "tags": ["tech", "glasses", "future", "historic"],
+        "imageUrl": "./images/prada-future-glasses.jpg"
+    },
+    {
+        "title": "sonic adventure 2",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 19.99,
+        "qty": 400,
+        "tags": ["sonic", "gaming", "gamecube", "historic"],
+        "imageUrl": "./images/sonic-2.png"
+    },
+    {
+        "title": "knicks season tickets",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 2,
+        "qty": 70000,
+        "tags": ["sports", "basketball", "knicks", "cheap"],
+        "imageUrl": "./images/knicks-tix.jpg"
+    },
+    {
+        "title": "not quite the ball from the tom hanks film",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Aliquet nec ullamcorper sit amet risus nullam eget. Justo nec ultrices dui sapien. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.",
+        "price": 30.99,
+        "qty": 10000,
+        "tags": ["sports", "basketball", "exercise"],
+        "imageUrl": "./images/basketball.jpg"
     }
-
 ]

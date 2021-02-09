@@ -6,7 +6,7 @@ const userController = require('./../controllers/userController');
 { methodname, methodname, etc }
 */
 
-const salesController = require('./../controllers/saleController');
+const { createSale, getAllSales } = require('./../controllers/saleController');
 const router = express.Router();
 
 // middleware triggered for router params
@@ -18,9 +18,9 @@ router.param('id', (req, resp, next, val) => {
 // => /sale
 router
     .route('/')
-    .get(() => {})
+    .get(getAllSales)
     // upload single uploads img to AWS bucket and injects file obj into req with path to url + more
-    .post(upload.single('mainImage'), salesController.createSale);
+    .post(upload.single('mainImage'), createSale);
 // => /sale/:id
 router
     .route('/:id')

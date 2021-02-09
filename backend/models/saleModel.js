@@ -11,7 +11,8 @@ const saleSchema = new mongoose.Schema({
         trim: true,
     },
     tags: {
-        type: [String],
+        type: Map,
+        of: Boolean,
         required: [true, 'Error: Sale tags are Required'],
     },
     price: {
@@ -35,6 +36,18 @@ const saleSchema = new mongoose.Schema({
         default: Date.now(),
     },
 });
+saleSchema.statics.convertTagsArrayIntoMap = function (tagsArray) {
+    const tagsMap = {};
+    for (const tag of tagsArray) tagsMap[tag] = true;
+    return tagsMap;
+};
+saleSchema.statics.convertTagsStringIntoQueryObject = function (tagsString) {
+    // const tagQuery = {};
+    // for (const tagName of tagsString.split(',')) tagQuery[`tags.${tagName}`] = { exists: true };
+    // return tagQuery;
+
+    return tagsString.split(',').map((t) => ({ [`tags.${t}`]: { exists: true } }));
+};
 
 const Sale = mongoose.model('Sale', saleSchema);
 module.exports = Sale;

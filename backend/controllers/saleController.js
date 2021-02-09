@@ -6,7 +6,11 @@ exports.createSale = async ({ body, file: { location, key } }, resp) => {
     // error handling
     try {
         // creates sale using req.body and waits for promise to resolve b4 storing in var
-        const newSale = await Sale.create({ mainImage: { url: location, key: key }, ...body });
+        const newSale = await Sale.create({
+            ...body,
+            mainImage: { url: location, key: key },
+            tags: Sale.convertTagsArrayIntoMap(body.tags),
+        });
         // return JSON
         resp.status(200).json({
             status: 'success',
@@ -25,13 +29,26 @@ exports.createSale = async ({ body, file: { location, key } }, resp) => {
 };
 
 // fn ( request, response )
-exports.getAllSales = async (req, resp) => {
+exports.getAllSales = async ({ query }, resp) => {
     // error handler
     try {
-        // waits on promise, empty args => returns all sales
-        const sales = await Sale.find();
+        // building query
+        const queryObj = query.tags
+            ? { ...query, or: Sale.convertTagsStringIntoQueryObject(query.tags) }
+            : { ...query };
+        const excludedParams = ['page', 'sort', 'limit', 'fields', 'tags'];
+        // removing specific params
+        for (const param of excludedParams) delete queryObj[param];
 
-        // return JSON
+        // fixings params for mogoDB operations eg., gte -> $gte
+        const queryString = JSON.stringify(queryObj).replace(/\b(gte|gt|lte|lt|exists|or)\b/g, (match) => `$${match}`);
+        console.log('qs', queryString);
+        // executing the query
+        const updatedQuery = Sale.find(JSON.parse(queryString));
+        console.log(JSON.parse(queryString));
+        const sales = await updatedQuery;
+
+        // return JSON / resp
         resp.status(200).json({
             status: 'success',
             data: {
@@ -41,7 +58,7 @@ exports.getAllSales = async (req, resp) => {
     } catch (error) {
         resp.status(404).json({
             status: 'fail',
-            message: 'fail!',
+            message: `${error}`,
         });
     }
 };
