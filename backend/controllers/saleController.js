@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 const Sale = require('../models/saleModel');
 const { remove } = require('../services/imageUpload');
 
@@ -27,26 +28,89 @@ exports.createSale = async ({ body, file: { location, key } }, resp) => {
         });
     }
 };
+/** MyClass description */
+class ApiInterface {
+    // eslint-disable-next-line require-jsdoc
+    constructor(query, queryObject) {
+        this.query = query;
+        this.queryObject = queryObject;
+    }
+
+    // eslint-disable-next-line require-jsdoc
+    filter() {
+        let optionalTags = {};
+        let mandoTags = {};
+        // builds part of mongoDB query to match tags
+        if (this.queryObject.tags) optionalTags = Sale.convertTagsStringIntoQueryObject(true, this.queryObject.tags);
+        if (this.queryObject.manTags)
+            mandoTags = Sale.convertTagsStringIntoQueryObject(false, this.queryObject.manTags);
+
+        //  formatting query for MongoDB/mongoose.find() query
+        const formattedQueryObject = { ...this.queryObject, ...optionalTags, ...mandoTags };
+        const excludedParams = ['page', 'limit', 'fields', 'tags', 'manTags', 'sort'];
+
+        // removing specific params
+        for (const param of excludedParams) delete formattedQueryObject[param];
+
+        // fixings params for mongoDB operations eg., gte -> $gte
+        const queryString = JSON.stringify(formattedQueryObject).replace(
+            /\b(gte|gt|lte|lt|exists|or|and|all)\b/g,
+            (match) => `$${match}`,
+        );
+        // executing the query
+        this.query = this.query.find(JSON.parse(queryString));
+        // for chaining
+        return this;
+    }
+
+    // eslint-disable-next-line require-jsdoc
+    sort() {
+        // sorting
+        if (this.queryObject.sort) {
+            const sortParams = this.queryObject.sort.split(',').join(' ');
+
+            this.query = this.query.sort(sortParams);
+        } else {
+            // default is to sort by newest ie., createdAt DESC order and than by name
+            this.query = this.query.sort('-createdAt title');
+        }
+        return this;
+    }
+
+    limitFields() {
+        if (this.queryObject.fields) {
+            const fields = this.queryObject.fields.split(',').join(' ');
+            // select is mongoose method expects string of keys to include formatted like: 'key1 key2'
+            this.query = this.query.select(fields);
+        } else {
+            // includes everything but version key (only backend needs it)
+            this.query = this.query.select('-__v');
+        }
+        return this;
+    }
+
+    paginate() {
+        const page = this.queryObject.page * 1 || 1;
+        const limit = this.queryObject.limit * 1 || 100;
+        const skip = (page - 1) * limit;
+        /* 
+            skip and limit are moongoose methods to help select current page and results per page
+            limit === numbers of results per page
+            skip === number of results to skip -> page * limit
+        */
+
+        this.query = this.query.skip(skip).limit(limit);
+        return this;
+    }
+}
 
 // fn ( request, response )
 exports.getAllSales = async ({ query }, resp) => {
     // error handler
     try {
-        // building query
-        const queryObj = query.tags
-            ? { ...query, or: Sale.convertTagsStringIntoQueryObject(query.tags) }
-            : { ...query };
-        const excludedParams = ['page', 'sort', 'limit', 'fields', 'tags'];
-        // removing specific params
-        for (const param of excludedParams) delete queryObj[param];
-
-        // fixings params for mogoDB operations eg., gte -> $gte
-        const queryString = JSON.stringify(queryObj).replace(/\b(gte|gt|lte|lt|exists|or)\b/g, (match) => `$${match}`);
-        console.log('qs', queryString);
-        // executing the query
-        const updatedQuery = Sale.find(JSON.parse(queryString));
-        console.log(JSON.parse(queryString));
-        const sales = await updatedQuery;
+        const interface = new ApiInterface(Sale.find(), query).filter().sort().limitFields().paginate();
+        console.log(interface.query);
+        const sales = await interface.query;
 
         // return JSON / resp
         resp.status(200).json({

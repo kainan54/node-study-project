@@ -41,12 +41,13 @@ saleSchema.statics.convertTagsArrayIntoMap = function (tagsArray) {
     for (const tag of tagsArray) tagsMap[tag] = true;
     return tagsMap;
 };
-saleSchema.statics.convertTagsStringIntoQueryObject = function (tagsString) {
-    // const tagQuery = {};
-    // for (const tagName of tagsString.split(',')) tagQuery[`tags.${tagName}`] = { exists: true };
-    // return tagQuery;
+saleSchema.statics.convertTagsStringIntoQueryObject = function (optional, tagsString) {
+    // builds mongo query to match ALL tags from string
+    const queryForMando = (string) => ({ and: string.split(',').map((t) => ({ [`tags.${t}`]: { exists: true } })) });
+    // builds mongo query to match ANY tag from string
+    const queryForOptional = (string) => ({ or: string.split(',').map((t) => ({ [`tags.${t}`]: { exists: true } })) });
 
-    return tagsString.split(',').map((t) => ({ [`tags.${t}`]: { exists: true } }));
+    return optional ? queryForOptional(tagsString) : queryForMando(tagsString);
 };
 
 const Sale = mongoose.model('Sale', saleSchema);
