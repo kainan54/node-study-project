@@ -123,9 +123,9 @@ exports.deleteSale = async ({ params: { id } }, resp) => {
 exports.getSalesStats = async (req, resp) => {
     try {
         const stats = await Sale.aggregate([
-            {
-                $match: { price: { $gte: 0 } },
-            },
+            // {
+            //     $match: { price: { $gte: 0 } },
+            // },
             {
                 $group: {
                     // always specify id for grping, null puts everything in 1 group
@@ -136,6 +136,44 @@ exports.getSalesStats = async (req, resp) => {
                     avgPrice: { $avg: '$price' },
                     minPrice: { $min: '$price' },
                     maxPrice: { $max: '$price' },
+                },
+            },
+            {
+                $sort: { avgPrice: 1 },
+            },
+        ]);
+
+        resp.status(200).json({
+            status: 'success',
+            data: { stats },
+        });
+    } catch (error) {
+        resp.status(404).json({
+            status: 'fail',
+            message: `${error}`,
+        });
+    }
+};
+
+exports.aggTest = async (req, resp) => {
+    try {
+        const stats = await Sale.aggregate([
+            {
+                $project: {
+                    tags: { $objectToArray: '$tags' },
+                },
+            },
+
+            {
+                $unwind: '$tags',
+            },
+
+            {
+                $group: {
+                    // always specify id for grping, null puts everything in 1 group
+                    _id: '$tags.k',
+                    // stats for groups
+                    timesUsed: { $sum: 1 },
                 },
             },
         ]);
