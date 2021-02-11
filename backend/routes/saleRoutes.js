@@ -6,7 +6,7 @@ const userController = require('./../controllers/userController');
 { methodname, methodname, etc }
 */
 
-const { createSale, getAllSales } = require('./../controllers/saleController');
+const { createSale, getAllSales, getSalesStats } = require('../controllers/saleController');
 const router = express.Router();
 
 // middleware triggered for router params
@@ -14,6 +14,8 @@ router.param('id', (req, resp, next, val) => {
     console.log(val);
     next();
 });
+
+router.route('/stats').get(getSalesStats);
 
 // => /sale
 router

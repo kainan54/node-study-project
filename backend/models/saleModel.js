@@ -23,6 +23,12 @@ const saleSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Error: Sale requires qty'],
     },
+    ratings: {
+        type: [Object],
+    },
+    ratingsAvg: {
+        type: Number,
+    },
     mainImage: {
         type: { url: String, key: String },
         required: [true, 'Error: Main Image required'],

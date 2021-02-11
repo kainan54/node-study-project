@@ -16,7 +16,7 @@ server.use(cors());
 
 // routes
 server.use('/user', userRouter);
-server.use('/sale', saleRouter);
+server.use('/sales', saleRouter);
 server.get('/', (req, resp) => {
     resp.status(200).json({
         message: 'Hello from the node server',

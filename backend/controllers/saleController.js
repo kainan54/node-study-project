@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 const Sale = require('../models/saleModel');
 const { remove } = require('../services/imageUpload');
 const ApiInterface = require('../services/apiInterface');
@@ -116,6 +115,39 @@ exports.deleteSale = async ({ params: { id } }, resp) => {
         resp.status(404).json({
             status: 'fail',
             message: 'fail!',
+        });
+    }
+};
+
+// gets aggregate stats
+exports.getSalesStats = async (req, resp) => {
+    try {
+        const stats = await Sale.aggregate([
+            {
+                $match: { price: { $gte: 0 } },
+            },
+            {
+                $group: {
+                    // always specify id for grping, null puts everything in 1 group
+                    _id: '$qty',
+                    // stats for groups
+                    numberOfSales: { $sum: 1 },
+                    avgRatings: { $avg: '$ratingsAvg' },
+                    avgPrice: { $avg: '$price' },
+                    minPrice: { $min: '$price' },
+                    maxPrice: { $max: '$price' },
+                },
+            },
+        ]);
+
+        resp.status(200).json({
+            status: 'success',
+            data: { stats },
+        });
+    } catch (error) {
+        resp.status(404).json({
+            status: 'fail',
+            message: `${error}`,
         });
     }
 };
