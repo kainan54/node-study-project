@@ -34,7 +34,6 @@ exports.getAllSales = async ({ query }, resp) => {
     // error handler
     try {
         const interface = new ApiInterface(Sale.find(), query).filter().sort().limitFields().paginate();
-        console.log(interface.query);
         const sales = await interface.query;
 
         // return JSON / resp
