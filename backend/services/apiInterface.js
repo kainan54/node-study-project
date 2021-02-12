@@ -1,9 +1,8 @@
-/** A Utilitiy Class to help controllers manage incoming/outcoming requests
+/** A Util Class to help controllers manage incoming/outcoming requests
  * 1 instance per request
  */
 class ApiInterface {
     /**
-     * Create a point.
      * @param {Object} query - mongoose object with protype methods for building our DB query. It yields a promise with query results.
      * @param {Object} queryObject - regular object created from the incoming browser req.query.
      */
@@ -27,10 +26,18 @@ class ApiInterface {
         }
 
         //  merges the filter objects into new, singular filter Object
-        const formattedQueryObject = { ...this.queryObject, ...optionalTags, ...mandoTags };
+        const formattedQueryObject = {
+            ...this.queryObject,
+            ...optionalTags,
+            ...mandoTags,
+        };
+
+        if (this.queryObject.title) {
+            Object.assign(formattedQueryObject, { $text: { $search: this.queryObject.title } });
+        }
 
         // params not used for filtering or  that needed to be formatted into the merged query Object
-        const excludedParams = ['page', 'limit', 'fields', 'tags', 'manTags', 'sort'];
+        const excludedParams = ['page', 'limit', 'fields', 'tags', 'manTags', 'sort', 'title'];
 
         // removing the params so they dont affect filtering
         for (const param of excludedParams) delete formattedQueryObject[param];
